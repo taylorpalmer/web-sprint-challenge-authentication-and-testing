@@ -5,7 +5,7 @@ const Users = require("./users-model");
 
 const router = require("express").Router();
 
-router.post("/register", async (req, res, next) => {
+router.post("/authRouter/register", async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const user = await Users.findBy({ username }).first();
@@ -27,7 +27,7 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
-router.post("/login", async (req, res, next) => {
+router.post("/authRouter/login", async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const user = await Users.findBy({ username }).first();
