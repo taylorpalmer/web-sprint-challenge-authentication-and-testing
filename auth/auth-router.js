@@ -7,7 +7,7 @@ const router = require("express").Router();
 
 router.post("/register", async (req, res, next) => {
   try {
-    const { username, password, department } = req.body;
+    const { username, password } = req.body;
     const user = await Users.findBy({ username }).first();
 
     if (user) {
@@ -19,7 +19,6 @@ router.post("/register", async (req, res, next) => {
     const newUser = await Users.add({
       username,
       password: await bcrypt.hash(password, 15),
-      department,
     });
 
     res.status(201).json(newUser);
