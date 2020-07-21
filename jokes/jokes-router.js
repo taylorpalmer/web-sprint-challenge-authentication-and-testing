@@ -1,9 +1,8 @@
 const axios = require("axios");
-const restrict = require("../auth/restrict");
 
 const router = require("express").Router();
 
-router.get("/", restrict(), async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   const requestOptions = {
     headers: { accept: "application/json" },
   };

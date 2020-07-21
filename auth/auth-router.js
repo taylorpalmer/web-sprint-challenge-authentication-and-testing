@@ -1,11 +1,10 @@
-const express = require("express");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const generateToken = require("./middleware/token-middleware");
 const Users = require("./users-model");
 
 const router = require("express").Router();
 
-router.post("/authRouter/register", async (req, res, next) => {
+router.post("/register", async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const user = await Users.findBy({ username }).first();
@@ -27,7 +26,7 @@ router.post("/authRouter/register", async (req, res, next) => {
   }
 });
 
-router.post("/authRouter/login", async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const user = await Users.findBy({ username }).first();
@@ -46,13 +45,10 @@ router.post("/authRouter/login", async (req, res, next) => {
       });
     }
 
-    const payload = {
-      userId: user.id,
-      username: user.username,
-    };
+    const token = generateToken(user);
 
-    res.json({
-      token: jwt.sign(payload, process.env.JWT_SECRET),
+    res.status(200).json({
+      // token: jwt.sign(payload, process.env.JWT_SECRET),
       message: `Welcome ${user.username}!`,
     });
   } catch (err) {

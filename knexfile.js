@@ -9,20 +9,20 @@ module.exports = {
     },
     seeds: { directory: "./database/seeds" },
   },
-  testing: {
-    client: "sqlite3",
-    useNullAsDefault: true,
-    connection: {
-      filename: "./data/test.db3",
-    },
-    migrations: {
-      directory: "./data/migrations",
-    },
-    seeds: {
-      directory: "./data/seeds",
-    },
-  },
-  production: {
-    // ...
-  },
+  // testing: {
+  //   client: "sqlite3",
+  //   useNullAsDefault: true,
+  //   connection: {
+  //     filename: "./database/test.db3",
+  //   },
+  //   migrations: {
+  //     directory: "./database/migrations",
+  //   },
+  //   seeds: {
+  //     directory: "./database/seeds",
+  //   },
+  // },
+  // production: {
+  //   // ...
+  // },
 };
